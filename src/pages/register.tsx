@@ -5,8 +5,11 @@ import {
   FormLabel,
   Input,
   FormErrorMessage,
+  Box,
+  Button,
 } from "@chakra-ui/core";
 import { Wrapper } from "../components/Wrapper";
+import { InputField } from "../components/InputField";
 
 interface registerProps {}
 
@@ -17,18 +20,24 @@ const Register: React.FC<registerProps> = ({}) => {
         initialValues={{ username: "", password: "" }}
         onSubmit={(values) => console.log(values)}
       >
-        {({ values, handleChange }) => (
+        {({ isSubmitting }) => (
           <Form>
-            <FormControl>
-              <FormLabel htmlFor="username">Username</FormLabel>
-              <Input
-                value={values.username}
-                onChange={handleChange}
-                id="username"
-                placeholder="Username"
+            <InputField
+              name="username"
+              placeholder="Username"
+              label="Username"
+            />
+            <Box mt={4} mb={5}>
+              <InputField
+                name="password"
+                placeholder="Password"
+                label="Password"
+                type="password"
               />
-              {/* <FormErrorMessage>{form.errors.name}</FormErrorMessage> */}
-            </FormControl>
+            </Box>
+            <Button type="submit" variantColor="teal" isLoading={isSubmitting}>
+              Register
+            </Button>
           </Form>
         )}
       </Formik>
