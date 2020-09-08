@@ -23,14 +23,13 @@ mutation Register($username: String!, $password: String!) {
 `;
 
 const Register: React.FC<registerProps> = ({}) => {
-  const [, register] = useMutation(REGISTER_MUT);
+  const [, register] = useMutation(REGISTER_MUT); 
   return (
     <Wrapper variant="small">
       <Formik
         initialValues={{ username: "", password: "" }}
         onSubmit={(values) => {
-          console.log(values);
-          register(values);
+          return register(values);
         }}
       >
         {({ isSubmitting }) => (
